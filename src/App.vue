@@ -8,7 +8,14 @@ const showForm = ref(false);
 const newMemo = ref("");
 
 // save all memo
-const memos = ref([]);
+const memos = ref([
+  {
+    id: 1,
+    content: "Hello, World!",
+    date: "2021-09-01",
+    backgroundColor: "#ffa6c1",
+  },
+]);
 
 // save function
 function addMemo() {
