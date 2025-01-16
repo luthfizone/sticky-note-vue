@@ -40,6 +40,13 @@ function addMemo() {
 function generateRandomColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
+
+// function deleteMemo
+function deleteMemo(index) {
+  memos.value = memos.value.filter((memo) => {
+    return memo.id !== index;
+  });
+}
 </script>
 
 <template>
@@ -62,7 +69,12 @@ function generateRandomColor() {
           <p class="card-content">
             {{ memo.content }}
           </p>
-          <p class="card-date">{{ memo.date }}</p>
+          <div class="card-footer">
+            <p class="card-date">{{ memo.date }}</p>
+            <button @click="deleteMemo(memo.id)" class="card-button">
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -148,6 +160,21 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-button {
+  background-color: #495a70;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 /* form overlay */
