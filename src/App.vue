@@ -7,6 +7,9 @@ const showForm = ref(false);
 // save state
 const newMemo = ref("");
 
+// Error: newMemo is not filled
+const errorMessage = ref("");
+
 // save all memo
 const memos = ref([
   {
@@ -19,6 +22,10 @@ const memos = ref([
 
 // save function
 function addMemo() {
+  if (newMemo.value === "") {
+    errorMessage.value = "Please fill the memo";
+    return;
+  }
   memos.value.push({
     id: Date.now(),
     content: newMemo.value,
@@ -66,7 +73,13 @@ function generateRandomColor() {
         <button class="form-close-btn" @click="showForm = false">
           &times;
         </button>
-        <textarea name="memo" id="memo" rows="10" v-model="newMemo"></textarea>
+        <span style="color: red">{{ errorMessage }}</span>
+        <textarea
+          name="memo"
+          id="memo"
+          rows="10"
+          v-model.lazy="newMemo"
+        ></textarea>
         <button class="form-save-btn" @click="addMemo">save</button>
       </div>
     </div>
