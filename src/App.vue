@@ -27,6 +27,15 @@
         </div>
       </div>
     </div>
+
+    <!-- Form overlay -->
+    <div class="form-overlay">
+      <div class="form-modal">
+        <button class="form-close-btn">&times;</button>
+        <textarea name="memo" id="memo" rows="10"></textarea>
+        <button class="form-save-btn">save</button>
+      </div>
+    </div>
   </main>
 </template>
 
@@ -92,5 +101,67 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+/* form overlay */
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.77);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-modal {
+  width: 420px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-save-btn {
+  background-color: #495a70;
+  color: white;
+  border: none;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.form-save-btn:hover {
+  background-color: #5e6e7f;
+}
+
+textarea {
+  height: 200px;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+  margin-bottom: 15px;
+  outline: 1px solid #495a70;
+}
+
+textarea:focus {
+  outline: 1px solid #495a70;
+}
+
+.form-close-btn {
+  position: absolute;
+  top: 5px;
+  border: none;
+  background-color: transparent;
+  right: 10px;
+  font-size: 25px;
+  cursor: pointer;
 }
 </style>
