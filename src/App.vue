@@ -3,6 +3,29 @@ import { ref } from "vue";
 
 // form overlay
 const showForm = ref(false);
+
+// save state
+const newMemo = ref("");
+
+// save all memo
+const memos = ref([]);
+
+// save function
+function addMemo() {
+  memos.value.push({
+    id: Date.now(),
+    content: newMemo.value,
+    date: new Date().toLocaleDateString("en-GB"),
+    backgroundColor: generateRandomColor(),
+  });
+
+  newMemo.value = "";
+  showForm.value = false;
+}
+
+function generateRandomColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+}
 </script>
 
 <template>
@@ -16,19 +39,16 @@ const showForm = ref(false);
 
       <!-- Card -->
       <div class="card-container">
-        <div class="card">
+        <div
+          class="card"
+          v-for="memo in memos"
+          :style="{ backgroundColor: memo.backgroundColor }"
+          :key="memo.id"
+        >
           <p class="card-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            {{ memo.content }}
           </p>
-          <p class="card-date">12/12/2025</p>
-        </div>
-        <div class="card">
-          <p class="card-content">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </p>
-          <p class="card-date">12/12/2025</p>
+          <p class="card-date">{{ memo.date }}</p>
         </div>
       </div>
     </div>
@@ -39,8 +59,8 @@ const showForm = ref(false);
         <button class="form-close-btn" @click="showForm = false">
           &times;
         </button>
-        <textarea name="memo" id="memo" rows="10"></textarea>
-        <button class="form-save-btn">save</button>
+        <textarea name="memo" id="memo" rows="10" v-model="newMemo"></textarea>
+        <button class="form-save-btn" @click="addMemo">save</button>
       </div>
     </div>
   </main>
