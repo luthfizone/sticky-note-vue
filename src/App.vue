@@ -8,7 +8,24 @@
         <h1 class="header-title">Memo</h1>
         <button class="header-button">+</button>
       </header>
-      <div>[card]</div>
+
+      <!-- Card -->
+      <div class="card-container">
+        <div class="card">
+          <p class="card-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <p class="card-date">12/12/2025</p>
+        </div>
+        <div class="card">
+          <p class="card-content">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+          <p class="card-date">12/12/2025</p>
+        </div>
+      </div>
     </div>
   </main>
 </template>
@@ -56,5 +73,24 @@ header {
 .header-button:active {
   transform: scale(0.9);
   transition: transform 0.1s ease-in-out;
+}
+
+/* card */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  width: 255px;
+  height: 255px;
+  padding: 10px;
+  background-color: #ffa6c1;
+  margin-bottom: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 </style>
